@@ -1,11 +1,11 @@
 package task3;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.io.*;
 
 public class Main {
     static RandomAccessFile randomAccessFile;
+
+    public static int numberOfSymbol;
 
     private static int getNumberOfPage(){
         InputStreamReader inputStreamReader = new InputStreamReader(System.in);
@@ -24,13 +24,20 @@ public class Main {
 
 
     public static void main(String[] args) {
+        Byte[] b = new Byte[1800];
+        numberOfSymbol = b.length * getNumberOfPage();
         System.out.println(getNumberOfPage());
 
-/*        try {
+        try {
             randomAccessFile = new RandomAccessFile("all.txt", "r");
-            randomAccessFile.seek();
+            try {
+                randomAccessFile.seek(numberOfSymbol);
+                randomAccessFile.readFully(b);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 }
